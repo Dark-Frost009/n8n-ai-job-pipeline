@@ -1,5 +1,11 @@
 # AI Job-Lead Pipeline (n8n)
 
+
+
+https://github.com/user-attachments/assets/259b6e18-0bd5-4d93-ac88-a5e71a7281af
+
+
+
 A daily low-code pipeline that finds new AI jobs open to India, judges each one with an LLM, and sends me a shortlist on Telegram. I decide what to apply for.
 
 ![Workflow](workflow.png)
