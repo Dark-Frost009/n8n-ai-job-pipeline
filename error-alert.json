@@ -1,0 +1,70 @@
+{
+  "name": "Job Pipeline - Error Alert",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        -48
+      ],
+      "id": "301f1fd4-b49d-41fd-a83e-a3f1fe099d9b",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_CHAT_ID",
+        "text": "={{ ('⚠️ Job Pipeline failed!\\n\\nWorkflow: ' + $json.workflow.name + '\\nBroken node: ' + $json.execution.lastNodeExecuted + '\\nError: ' + $json.execution.error.message + '\\n\\nOpen: ' + $json.execution.url).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        -48
+      ],
+      "id": "54fd8de9-3258-4c20-9d50-403820ec6e44",
+      "name": "Send a text message",
+      "webhookId": "2926a68f-8a0a-43e4-950a-fe7691a650ad",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAMAPI_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e83c21f3-c1f1-4ca4-b45d-29801275081a",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "nodeGroups": [],
+  "id": "aY6yQWxCNnhSlLjI",
+  "tags": []
+}
